@@ -1,0 +1,237 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>DrunkDices.com | The wold's funnest multiplayer drinking game.</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet"><!-- FONT -->
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <header>
+          <img src="img/logo.png" alt="DrunkDices.com Logo">
+        </header>
+
+        <!-- |||||||||||||||||||| MAIN AREA |||||||||||||||||||| -->
+        <section id="main-area">
+          <div class="container clearfix">
+            <div class="left_box boxes">
+
+              <div class="name-and-score">
+                <h4>Current Player:</h4>
+                <h2 id="active_player_name">Omar S.</h2>
+                <h4>Player Score:</h4>
+                <p class="active_player_score_line"><span id="active_player_score">80</span>pts</p>
+                <p class="points-to-win-line">(<span id="points-to-win">250</span>pts wins the game)</p>
+              </div><!-- End of .name-and-score -->
+
+              <!-- |||||||||||||||||||| BIG STREAKS |||||||||||||||||||| -->
+              <div class="streaks">
+                <h4>Streaks</h4>
+                <div class="streak-left">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
+                  <div id="inside-left">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">
+                  </div>
+                </div>
+                <div class="streak-right">
+                  <img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
+                  <img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
+                  <img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
+                  <div id="inside-right">
+                    <img src="img/x_icon.png" alt="Flame for Hot streak" class="big-streak-img">
+                    <img src="img/x_icon.png" alt="Flame for Hot streak" class="big-streak-img">
+                    <img src="img/x_icon.png" alt="Flame for Hot streak" class="big-streak-img">
+                  </div>
+                </div>
+              </div><!-- End of .streaks -->
+            </div><!-- End of .left_box -->
+
+            <div class="middle_box boxes">
+              <img id="dice" src="img/dices/6dice.png" alt="Dice">
+              <h4>Turn Score:</h4>
+              <p id="current_score">16</p><!-- #currentScore -->
+            </div><!-- End of .middle_box -->
+
+            <div class="right_box boxes">
+              <p class="current_attemps"><span id="current_attemps_number">7</span> <span id="current_attemps_word">attemps</span></p>
+
+              <button id="roll_dice_button">Roll Dice</button>
+              <button id="hold_points_button">Hold Points</button>
+            </div><!-- End of .right_box -->
+
+          </div> <!-- End of .container -->
+        </section><!-- End of #main-area -->
+
+        <!-- |||||||||||||||||||| PLAYERS AREA |||||||||||||||||||| -->
+        <section id="players-area">
+          <div class="container">
+            <div id="player-box-container" class="clearfix">
+
+              <div class="player_box">
+                <div id="player_1_name" class="player_names">Omar S.</div>
+                <div id="player_1_score_heading" class="player_score_heading">Player Score:</div>
+                <div id="player_1_score" class="player_score">
+                  <span class="player_score_number">80</span>pts
+                </div>
+                <div class="small_flames">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
+                  <div id="inside-small-flame">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
+                  </div>
+                </div>
+                <div class="small_xs">
+                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
+                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
+                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
+                  <div id="inside-small-x">
+                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
+                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
+                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
+                  </div>
+                </div>
+
+              </div>
+              <div class="player_box">
+                <div id="player_1_name" class="player_names">Omar S.</div>
+                <div id="player_1_score_heading" class="player_score_heading">Player Score:</div>
+                <div id="player_1_score" class="player_score">
+                  <span class="player_score_number">80</span>pts
+                </div>
+                <div class="small_flames">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
+                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
+                  <div id="inside-small-flame">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
+                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
+                  </div>
+                </div>
+                <div class="small_xs">
+                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
+                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
+                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
+                  <div id="inside-small-x">
+                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
+                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
+                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
+                  </div>
+                </div>
+
+              </div>
+              <!-- <div class="player_box"></div>
+              <div class="player_box"></div>
+              <div class="player_box"></div>
+              <div class="player_box"></div>
+              <div class="player_box"></div>
+              <div class="player_box"></div> -->
+            </div><!-- End of #player-box-container -->
+          </div><!-- End of .container -->
+        </section><!-- End of #players_area -->
+
+        <section id="rules">
+          <h2>Rules</h2>
+          <ul class="rule_list">
+            <li>Each Player can roll the dices as many time as they wish until they decide to hold their point and pass the turn or they get a “one”.</li>
+
+            <li>If a player gets a “one” when they roll the dice, they will not get any points and their turn will be over. A player must take a shot every time they get a 1.</li>
+
+            <li>If a player roll the dice 6 or more times in a turn and decides to hold his points, that turn become a fire turn. If a player gets a streak of 3 fire turns in a row he will get 50 bonus points and every other player has to have a drink.</li>
+
+            <li>When a player gets a “one” 3 turns in a row he must have an extra drink.</li>
+
+            <li>The first Player to reach 250 points wins the game, and every losing player has to have a drink.</li>
+
+            <li>Its super easy! The game will alert you when someone has to have a drink!</li>
+          </ul>
+        </section><!-- End of #rules -->
+
+        <footer>
+          <div class="container border_top">
+            <p>Alcohol should only be consumed by those legaly allowed to do so. Drunkdices.com nor it’s creators are responsible for any actions or consecuences that may occur while driniking or playing this game. It is not obligatory and 100% optional to drink while playing this game. Drink at your own discretion and remember that alcohol is unhealthy and can even cause death in some cases. If you decite to drink, make sure to stop if youre not feeling well.</p>
+
+            <img src="img/icon_fb.png" alt="Facebook">
+            <img src="img/icon_tw.png" alt="Twitter">
+            <img src="img/icon_ig.png" alt="Instagram">
+            <img src="img/icon_world.png" alt="Internet">
+
+            <p class="bottom_line">Copyright © 2017 DrunkDices.com powered by <a href="http://surielmedia.com/" target="_blank">SurielMedia.com<span class="surielmedia_tooltip">Check out the developer!</span></a></p>
+          </div><!-- End of .container -->
+        </footer><!-- End of footer -->
+
+
+        <!--************* Pop ups *************-->
+        <div id="low-opacity-screen" class=""></div>
+        <div id="popup-box" class="popup-content">
+
+          <div id="how-many-players" class="">
+            <h2>Start a game</h2>
+            <h3>How many players?</h3>
+            <select id="number-of-players">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+            <button id="number-of-players-ok">OK</button>
+          </div><!-- End of How many Players -->
+          <div id="name-form" class="hidden">
+            <h3>You selected <span id="number-selected">8</span> players. Now enter their names.</h3>
+            <ul id="name-list" class="clearfix">
+              <!-- <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 1"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 2"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 3"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 4"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 5"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 6"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 7"></li>
+              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 8"></li> -->
+            </ul>
+            <button id="name-form-ok">OK</button>
+            <p class='error hidden'>Please enter player names.</p>
+          </div><!-- End of name-form-->
+          <img id="popup-logo" src="img/logo_whitedices.svg">
+
+        </div><!-- End of popups -->
+
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
