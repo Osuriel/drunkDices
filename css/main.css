@@ -376,6 +376,12 @@ header {
   text-align: left;
 }
 
+.fire_bg {
+  background: url('../img/fire_bg.png') no-repeat,
+  rgba(255,255,255,0.97);
+  background-position: center 70px;
+}
+
 .streaks {
   /*border: 1px solid red;*/
   height: 100%;
@@ -424,7 +430,7 @@ header {
   margin: 30px auto;
 }
 
-.big-streak-img:last-of-type{
+.big-streak-img:nth-child(3n){
   width: 45px;
   margin-bottom: 5px;
 }
@@ -435,6 +441,7 @@ header {
 
 #active_player_name {
   margin-bottom: 50px;
+  text-transform: capitalize;
 }
 
 .active_player_score_line{
@@ -523,7 +530,14 @@ header {
   position: absolute;
   left: -28px; top: -8px;
 }
-
+#roll_dice_button:active::before {
+  content: url('../img/dice_icon.png');
+  position: absolute;
+  left: -28px; top: -8px;
+  transform: rotate(360deg);
+  transition: transform .4s;
+  -webkit-transition: transform .4s;
+}
 #hold_points_button::before {
   content: url('../img/lock_icon.png');
   position: absolute;
@@ -542,15 +556,27 @@ header {
 .player_box{
   width: 160px;
   height: 200px;
-  margin-top: 30px;
+  margin-top: 15px;
   margin-right: 5px;
   text-align: center;
   display: block;
   float: left;
+  border-radius: 5%;
+  padding-top: 8px;
 
+  /*background: pink;*/
 
-  background: pink;
+}
 
+.active_player_box{
+
+  border: 2px solid #f15a24;
+}
+
+.fire_streak{
+  background: url('../img/fire_bg.png') no-repeat;
+  background-size: 190px;
+  background-position: center 50px;
 }
 
 .player_box:last-child{
@@ -566,6 +592,8 @@ header {
   margin-bottom: 15px;
   text-shadow: 1px 2px 1px rgba(0,0,0,.07);
   text-transform: capitalize;
+  overflow: hidden;
+  height: 30px;
 }
 
 .player_score_heading {
@@ -608,11 +636,12 @@ header {
   width: 25px;
 }
 
-#inside-small-flame,
-#inside-small-x {
+.inside-small-flame,
+.inside-small-x {
   position: absolute;
   top: 0;
   width: 100%;
+
   /*background: green;*/
 }
 
@@ -747,6 +776,12 @@ p.error {
  color: red;
 }
 
+.name-too-long {
+  color: red;
+  font-size: .675rem;
+}
+
+
 
 .popup-content #number-of-players {
   display: block;
@@ -764,8 +799,9 @@ p.error {
 }
 
 #number-of-players:focus,
-.popup-content button:focus  {
-  outline: none;
+.popup-content button:focus,
+#name-list input:focus {
+  outline-color: #f15a24;
 }
 
 .popup-content button {

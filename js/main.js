@@ -20,14 +20,15 @@ Its super easy! The game will remind you when someone has to have a drink!
 
 // ----------------------------------- SET UP -----------------------------------
 
-var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn;
+var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput;
 
 players = {};
 winningScore = 250;
 playerTurn = 1;
 currentScore = 0;
 gameon = false;
-
+diceImgs =[];
+successfulRolls = 0;
 
 var nameInputArray = [];
 
@@ -37,9 +38,33 @@ var popupBoxDiv = document.getElementById('popup-box');
 var howManyPlayersDiv = document.getElementById('how-many-players');
 var nameFormDiv = document.getElementById('name-form');
 var error = document.querySelector('.error');
+var currentAttempsDOM = document.getElementById('current_attemps_number');
+var currentBigBoxDOM = document.getElementById('current_big_box');
+var bigFlamesDOM = document.getElementById('inside-left');
+var bigXDOM = document.getElementById('inside-right');
 
+//Dom Elements Game controls
+var rollDiceButton = document.getElementById('roll_dice_button');
+var holdPointsButton = document.getElementById('hold_points_button');
+var diceDom = document.getElementById('dice');
+var currentScoreDOM = document.getElementById('current_score');
+var activePlayerNameNode = document.getElementById('active_player_name');
+var activePlayerScoreNode = document.getElementById('active_player_score');
+
+for ( var i = 1; i <= 6; i++){
+  var diceUrl = 'img/dices/'+i+'dice.png';
+  diceImgs[i]= diceUrl;
+}
 
 //functions:
+
+
+function makeNode( type, classes , parent){
+  var element = document.createElement(type);
+  element.className = classes;
+  parent.appendChild(element);
+  return element;
+}
 
 function hide(element){
   element.classList.add('hidden');
@@ -52,16 +77,39 @@ function show(element){
 
 function rollDice(){
   diceResult = Math.floor(Math.random() * 6) + 1;
+  diceDom.src = diceImgs[diceResult];
   addToCurrentScore();
+  console.log(diceResult);
 }
 
 function addToCurrentScore(){
   if ( diceResult === 1 ){
     currentScore = 0;
+    currentScoreDOM.textContent= currentScore;
+    activePlayer.flames = 0;
+    activePlayer.x++;
+
+    //Takes 20 points away if you have an X streak of 3.
+    if ( activePlayer.x >= 3 && activePlayer.score > 20 ) {
+      activePlayer.score -= 20;
+      //Show Pop up saying you just lost 20 points and every other player needs a drink.
+      alert('You got 3 X in a row. you just lost 20 points');
+    } else if (activePlayer.x >= 3 && activePlayer.score <= 20) {
+      activePlayer.score = 0;
+      //Show Pop up saying you just lost 20 points and every other player needs a drink
+      alert('You got 3 X in a row. you just lost 20 points');
+    }
+
+
     alert('You got a 1! Take a Shot and your turn is over');
+    successfulRolls = 0;
     switchTurn();
   } else {
     currentScore += diceResult;
+    currentScoreDOM.textContent= currentScore;
+    successfulRolls++;
+    currentAttempsDOM.textContent = successfulRolls;
+
   }
   if( (currentScore + activePlayer.score ) >= winningScore ){
     alert(activePlayer.name + ' just WON the game! Every other player has to take a shot, the person in last place takes 2');
@@ -70,19 +118,82 @@ function addToCurrentScore(){
 
 function addToPlayerScore(){
   activePlayer.score += currentScore;
+  activePlayer.x = 0;
+
+  if ( successfulRolls >= 6 ){
+    if (activePlayer.flames < 3){
+      activePlayer.flames++;
+    }
+  }
+
+  if ( activePlayer.flames === 6 ){
+    activePlayer.score += 50;
+    //Show Pop up saying you just got 50 points and every other player needs a drink.
+    alert('You got 3 X in a row. you just Won 50 points, Every other player needs a drink');
+  }
   switchTurn();
 }
 
 function switchTurn(){
+  activePlayer.html.score.textContent = activePlayer.score;
   currentScore = 0;
+  currentScoreDOM.textContent = 0;
+  currentAttempsDOM.textContent = 0;
+  successfulRolls = 0;
+  updateStreaks( activePlayer.flames, activePlayer.x );
+  activePlayer.html.playerBox.classList.remove('active_player_box');
   if ( playerTurn === numberOfPlayers ){
     playerTurn = 1;
   } else {
     playerTurn++;
   }
   activePlayer = players['player' + playerTurn];
-  alert(activePlayer.name + "It is your turn now.");
+  alert(activePlayer.name + " It is your turn now.");
+  activePlayerNameNode.textContent = activePlayer.name;
+  activePlayerScoreNode.textContent = activePlayer.score;
+  activePlayer.html.playerBox.classList.add('active_player_box');
+
+  updateBigStreaks( activePlayer.flames, activePlayer.x );
+
+  if ( activePlayer.flames >= 3 ){
+    currentBigBoxDOM.classList.add('fire_bg');
+  }else{
+    currentBigBoxDOM.classList.remove('fire_bg');
+  }
 }
+
+
+function updateStreaks( flames, xs ){
+  var flameImgs = '<img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">';
+  var xImgs = '<img src="img/x_icon.png" alt="X for Hot streak" class="small-streak-img">';
+  activePlayer.html.flames.innerHTML = "";
+  activePlayer.html.x.innerHTML = "";
+
+  for ( var i = 1 ; i <= flames && i <=3 ; i++ ){
+    activePlayer.html.flames.innerHTML += flameImgs;
+  }
+
+  for ( var i = 1 ; i <= xs && i <=3 ; i++ ){
+    activePlayer.html.x.innerHTML += xImgs;
+  }
+}
+
+function updateBigStreaks ( flames, xs) {
+  var flameImgs = '<img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">';
+  var xImgs = '<img src="img/x_icon.png" alt="X for Hot streak" class="big-streak-img">';
+  bigFlamesDOM.innerHTML = "";
+  bigXDOM.innerHTML = "";
+
+  for ( var i = 1 ; i <= flames && i <=3 ; i++ ){
+      bigFlamesDOM.innerHTML += flameImgs;
+  }
+
+  for ( var i = 1 ; i <= xs && i <=3 ; i++ ){
+      bigXDOM.innerHTML += xImgs;
+  }
+}
+
+
 
 function setNumberOfPlayers(){
   numberOfPlayers = parseFloat(document.getElementById('number-of-players').value);
@@ -101,16 +212,43 @@ function setNumberOfPlayers(){
     liElement.appendChild(inputElement);
     nameInputArray[i] = inputElement;
     document.getElementById('name-list').appendChild(liElement);
-
+    inputElement.addEventListener( 'keypress' , function(event){
+      if ( event.which === 13 ) {
+        var i = parseInt(this.id.charAt(this.id.length -1));
+        if( i < numberOfPlayers){
+          document.getElementById( 'name-input-' + (i+1)).focus();
+        } else {
+          document.getElementById('name-form-ok').focus();
+        }
+      }
+    } );
   }
 
 }
+
+
 
 function startGame(){
   //Make sure all fields are filled.
   for ( var i = 1 ; i <= numberOfPlayers ; i++ ){
     if ( nameInputArray[i].value == false){
       show(error);
+      return;
+    }
+
+    if ( nameInputArray[i].value.length > 11){
+      nameInputArray[i].classList.add('name-too-long');
+      nameInputArray[i].value = "Name was too long. Try 11 characters or less";
+      nameInputArray[i].focus();
+      nameInputArray[i].setSelectionRange(0, nameInputArray[i].value.length);
+      errorNameInput = nameInputArray[i];
+      errorNameInput.addEventListener ( 'click', function(){
+        errorNameInput.setSelectionRange(0, nameInputArray[i].value.length);
+        errorNameInput.classList.remove('name-too-long');
+      });
+      errorNameInput.addEventListener ( 'keypress', function(){
+        errorNameInput.classList.remove('name-too-long');
+      });
       return;
     }
   }
@@ -122,9 +260,9 @@ function startGame(){
     players["player" + i] = {
       name: name,
       score: 0,
-      fireStreak: 0,
-      xStreak: 0,
-      html: {}
+      html: {},
+      flames: 0,
+      x: 0,
     }
 
     //Create a Player box for each player.
@@ -150,18 +288,46 @@ function startGame(){
     playerScoreNumber.classList.add('player_score_number');
     playerScoreNumber.textContent = players["player" + i].score;
 
-    players["player" + i].html.score = playerScoreNumber;
+    playerScoreNumber.id = "player_score_number_" + i;
 
     playerScoreDiv.appendChild(playerScoreNumber);
-    playerScoreDiv.innerHTML += "pts";
 
+    playerScoreDiv.appendChild(document.createTextNode('pts'));
 
+    //Set default gray flames:
+    var smallFlames = makeNode('div', 'small_flames', playerBox);
+    smallFlames.innerHTML =
+      '<img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">';
+
+    //SET DEFAULT FOR COLORED RED ACTIVE flames
+    var insideSmallFlame = makeNode('div', 'inside-small-flame',smallFlames);
+
+    // insideSmallFlame.innerHTML =
+    //   '<img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">';
+
+    //SET DEFAULT FOR gray  Xs
+    var smallXs = makeNode( 'div','small_xs', playerBox);
+
+    smallXs.innerHTML =
+      '<img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">';
+
+    var insideSmallXs = makeNode( 'div','inside-small-x', smallXs);
+
+    // insideSmallXs.innerHTML =
+    //   '<img src="img/x_icon.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/x_icon.png" alt="Flame for Hot streak" class="small-streak-img"><img src="img/x_icon.png" alt="Flame for Hot streak" class="small-streak-img">';
 
     //inserting DOM elements inside players object for later access
+
+    players["player" + i].html.playerBox =playerBox; insideSmallXs;
+    players["player" + i].html.score = playerScoreNumber;
+    players["player" + i].html.flames = insideSmallFlame;
+    players["player" + i].html.x = insideSmallXs;
+
     // players["player" + i].html.score = document.querySelector('.player_score_number');
     // players["player" + i].html.score = playerScoreNumber;
     // players["player" + i].html.score.textContent = 34;
   }
+
 
   hide(lowOpacityScreenDiv);
   hide(popupBoxDiv);
@@ -171,8 +337,14 @@ function startGame(){
 }
 
 
+
 // ----------------------------------- CODE STARTS RUNNING HERE -----------------------------------
+
 
 
 document.getElementById('number-of-players-ok').addEventListener( 'click' , setNumberOfPlayers );
 document.getElementById('name-form-ok').addEventListener( 'click' , startGame );
+function changeScore(){players.player1.html.score.innerHTML = 30;}
+
+rollDiceButton.addEventListener( 'click', rollDice);
+holdPointsButton.addEventListener( 'click', addToPlayerScore);
