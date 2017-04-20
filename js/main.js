@@ -20,7 +20,7 @@ Its super easy! The game will remind you when someone has to have a drink!
 
 // ----------------------------------- SET UP -----------------------------------
 
-var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput;
+var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput, currentlyRolling, holdRoll;
 
 players = {};
 winningScore = 250;
@@ -29,6 +29,7 @@ currentScore = 0;
 gameon = false;
 diceImgs =[];
 successfulRolls = 0;
+currentlyRolling = false;
 
 var nameInputArray = [];
 
@@ -74,12 +75,46 @@ function show(element){
   element.classList.remove('hidden');
 }
 
+function stillRolling(){
+    var tempDice = Math.floor(Math.random() * 6) + 1;
+    diceDom.src = diceImgs[tempDice];
+    console.log('this is running');
+    currentlyRolling = true;
+}
+
+function rollingDice(){
+  if (currentlyRolling === false){
+  holdRoll = setInterval( stillRolling, 50);
+  }
+}
+
+function rollingDiceStop(){
+  clearInterval(holdRoll);
+  if( currentlyRolling === true ){
+
+    rollDice();
+  }
+}
+
 
 function rollDice(){
-  diceResult = Math.floor(Math.random() * 6) + 1;
-  diceDom.src = diceImgs[diceResult];
-  addToCurrentScore();
-  console.log(diceResult);
+  //Making dice rol for .150 seconds before selecting the number
+  interval= setInterval( stillRolling, 50);
+
+
+  //Real Dice Roll
+  function realDiceRoll (){
+    if ( realDiceRoll === false ){
+    clearInterval(interval)
+    diceResult = Math.floor(Math.random() * 6) + 1;
+    diceDom.src = diceImgs[diceResult];
+    addToCurrentScore();
+    console.log(diceResult);
+    }
+  }
+
+  setTimeout( realDiceRoll, 150);
+  realRollStarted = true;
 }
 
 function addToCurrentScore(){
@@ -100,10 +135,10 @@ function addToCurrentScore(){
       alert('You got 3 X in a row. you just lost 20 points');
     }
 
-
-    alert('You got a 1! Take a Shot and your turn is over');
-    successfulRolls = 0;
-    switchTurn();
+    setTimeout( function(){
+      alert('You got a 1! Take a Shot and your turn is over');
+      switchTurn();
+    }, 500);
   } else {
     currentScore += diceResult;
     currentScoreDOM.textContent= currentScore;
@@ -112,7 +147,11 @@ function addToCurrentScore(){
 
   }
   if( (currentScore + activePlayer.score ) >= winningScore ){
-    alert(activePlayer.name + ' just WON the game! Every other player has to take a shot, the person in last place takes 2');
+
+    setTimeout( function(){
+      alert(activePlayer.name + ' just WON the game! Every other player has to take a shot, the person in last place takes 2');
+    }, 500);
+
   }
 }
 
@@ -346,5 +385,8 @@ document.getElementById('number-of-players-ok').addEventListener( 'click' , setN
 document.getElementById('name-form-ok').addEventListener( 'click' , startGame );
 function changeScore(){players.player1.html.score.innerHTML = 30;}
 
-rollDiceButton.addEventListener( 'click', rollDice);
 holdPointsButton.addEventListener( 'click', addToPlayerScore);
+
+rollDiceButton.addEventListener( 'mousedown' , rollingDice);
+rollDiceButton.addEventListener( 'mouseup' , rollingDiceStop);
+rollDiceButton.addEventListener( 'mouseleave' , rollingDiceStop);

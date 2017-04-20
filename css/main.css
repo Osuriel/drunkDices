@@ -539,6 +539,12 @@ header {
   -webkit-transition: transform .4s;
 }
 #hold_points_button::before {
+  content: url('../img/lock_open_icon.png');
+  position: absolute;
+  left: -28px; top: -8px;
+}
+
+#hold_points_button:hover::before {
   content: url('../img/lock_icon.png');
   position: absolute;
   left: -28px; top: -8px;
