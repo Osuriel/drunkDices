@@ -510,7 +510,6 @@ header {
   font-weight: bold;
 }
 
-
 #roll_dice_button,
 #hold_points_button {
   border: none;
@@ -536,9 +535,13 @@ header {
 }
 
 #current_attemps_number::before {
-  content: url('../img/flame_icon.png');
+  content: url('../img/flame_icon_gray.png');
   position: absolute;
   left: -28px; top: -8px;
+}
+
+#current_attemps_number.current_attemps_streak::before {
+  content: url('../img/flame_icon.png');
 }
 
 #roll_dice_button::before {

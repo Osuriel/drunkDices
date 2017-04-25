@@ -20,7 +20,7 @@ Its super easy! The game will remind you when someone has to have a drink!
 
 // ----------------------------------- SET UP -----------------------------------
 
-var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput, holdRoll, diceRolling, rollDiceButtonActive;
+var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, nameInputArray, successfulRolls, errorNameInput, holdRoll, diceRolling, rollDiceButtonActive, holdPointsButtonActive;
 
 players = {};
 winningScore = 250;
@@ -31,8 +31,8 @@ diceImgs =[];
 successfulRolls = 0;
 diceRolling = false;
 rollDiceButtonActive = true;
-
-var nameInputArray = [];
+holdPointsButtonActive = true;
+nameInputArray = [];
 
 //DOM elements
 var lowOpacityScreenDiv= document.getElementById('low-opacity-screen');
@@ -143,6 +143,9 @@ function addToCurrentScore(){
     currentScoreDOM.textContent= currentScore;
     successfulRolls++;
     currentAttempsDOM.textContent = successfulRolls;
+    if ( successfulRolls === 6 ){
+      currentAttempsDOM.className = 'current_attemps_streak';//Lights up the flame indicating a streak.
+    }
 
   }
   if( (currentScore + activePlayer.score ) >= winningScore ){
@@ -155,40 +158,46 @@ function addToCurrentScore(){
 }
 
 function addToPlayerScore(){
-  currentScoreDOM.className = 'moving_current_score';
-
-  setTimeout( function(){
-    activePlayer.score += currentScore;
-    activePlayer.x = 0;
-    activePlayerScoreNode.textContent = activePlayer.score;
-
-    if ( successfulRolls >= 6 ){
-      if (activePlayer.flames < 3){
-        activePlayer.flames++;
-      }
-    }
-
-    if ( activePlayer.flames === 6 ){
-      activePlayer.score += 50;
-      //Show Pop up saying you just got 50 points and every other player needs a drink.
-      alert('You got 3 X in a row. you just Won 50 points, Every other player needs a drink');
-    }
-    updateBigStreaks( activePlayer.flames, activePlayer.x );
+  if (holdPointsButtonActive){
+    holdPointsButtonActive = false;
+    currentScoreDOM.className = 'moving_current_score';
 
     setTimeout( function(){
-      currentScoreDOM.className = '';
-      switchTurn();
-    } , 1000)
+      activePlayer.score += currentScore;
+      activePlayer.x = 0;
+      activePlayerScoreNode.textContent = activePlayer.score;
+
+      if ( successfulRolls >= 6 ){
+        if (activePlayer.flames < 3){
+          activePlayer.flames++;
+        }
+      } else {
+        activePlayer.flames = 0;
+      }
+
+      if ( activePlayer.flames === 6 ){
+        activePlayer.score += 50;
+        //Show Pop up saying you just got 50 points and every other player needs a drink.
+        alert('You got 3 X in a row. you just Won 50 points, Every other player needs a drink');
+      }
+      updateBigStreaks( activePlayer.flames, activePlayer.x );
+
+      setTimeout( function(){
+        currentScoreDOM.className = '';
+        switchTurn();
+      } , 1000)
 
 
-  } , 1000 )
+    } , 1000 )
 
-
+  }
 }
 
 function switchTurn(){
   activePlayer.html.score.textContent = activePlayer.score;
   currentScore = 0;
+  holdPointsButtonActive = true;
+  currentAttempsDOM.className = '';//Lights up the flame indicating a streak.
   currentScoreDOM.textContent = 0;
   currentAttempsDOM.textContent = 0;
   successfulRolls = 0;
