@@ -476,6 +476,22 @@ header {
   text-shadow: 1px 2px 1px rgba(0,0,0,.2);
 }
 
+@keyframes move-current-score {
+  0% {top: 0; left: 0;}
+  100% {top: -50px; left: -400px; font-size: 2rem;}
+}
+
+#current_score.moving_current_score{
+  position: relative;
+  color: green;
+
+  animation-name: move-current-score;
+  animation-duration: 1s;
+}
+
+#current_score.moving_current_score::before{
+  content: "+";
+}
 
 /*---------------- Right Box ----------------*/
 
@@ -530,14 +546,24 @@ header {
   position: absolute;
   left: -28px; top: -8px;
 }
-#roll_dice_button:active::before {
+
+@keyframes rotate-dice {
+    0%   {transform: rotate(0deg);}
+    100%  {transform: rotate(360deg);}
+}
+
+
+.roll_dice_active::before {
   content: url('../img/dice_icon.png');
   position: absolute;
   left: -28px; top: -8px;
-  transform: rotate(360deg);
-  transition: transform .4s;
-  -webkit-transition: transform .4s;
+  /*transform: rotate(360deg);*/
+  /*transition: transform .4s;*/
+  /*-webkit-transition: transform .4s;*/
+  animation: rotate-dice;
+  animation-duration: 1s;
 }
+
 #hold_points_button::before {
   content: url('../img/lock_open_icon.png');
   position: absolute;

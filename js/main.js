@@ -20,7 +20,7 @@ Its super easy! The game will remind you when someone has to have a drink!
 
 // ----------------------------------- SET UP -----------------------------------
 
-var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput, holdRoll;
+var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput, holdRoll, diceRolling, rollDiceButtonActive;
 
 players = {};
 winningScore = 250;
@@ -29,6 +29,8 @@ currentScore = 0;
 gameon = false;
 diceImgs =[];
 successfulRolls = 0;
+diceRolling = false;
+rollDiceButtonActive = true;
 
 var nameInputArray = [];
 
@@ -42,6 +44,7 @@ var currentAttempsDOM = document.getElementById('current_attemps_number');
 var currentBigBoxDOM = document.getElementById('current_big_box');
 var bigFlamesDOM = document.getElementById('inside-left');
 var bigXDOM = document.getElementById('inside-right');
+var activePlayerScoreNode = document.getElementById('active_player_score');
 
 //Dom Elements Game controls
 var rollDiceButton = document.getElementById('roll_dice_button');
@@ -49,7 +52,7 @@ var holdPointsButton = document.getElementById('hold_points_button');
 var diceDom = document.getElementById('dice');
 var currentScoreDOM = document.getElementById('current_score');
 var activePlayerNameNode = document.getElementById('active_player_name');
-var activePlayerScoreNode = document.getElementById('active_player_score');
+
 
 for ( var i = 1; i <= 6; i++){
   var diceUrl = 'img/dices/'+i+'dice.png';
@@ -83,24 +86,34 @@ function stillRolling(){
 
 
 function rollDice(){
-  //Making dice rol for .150 seconds before selecting the number
-  interval= setInterval( stillRolling, 40);
+  if ( rollDiceButtonActive === true ){
+    //Making dice rol for .150 seconds before selecting the number
+    if ( diceRolling === false ){
+      interval= setInterval( stillRolling, 60);
+    }
+    // debugger;
 
-  // debugger;
+    //Real Dice Roll
+    function realDiceRoll (){
 
-  //Real Dice Roll
-  function realDiceRoll (){
+      clearInterval(interval)
+      diceResult = Math.floor(Math.random() * 6) + 1;
+      diceDom.src = diceImgs[diceResult];
+      addToCurrentScore();
+      console.log(diceResult);
+      diceRolling = false;
 
-    clearInterval(interval)
-    diceResult = Math.floor(Math.random() * 6) + 1;
-    diceDom.src = diceImgs[diceResult];
-    addToCurrentScore();
-    console.log(diceResult);
+    }
 
+    setTimeout( realDiceRoll, 400);
+    diceRolling = true;
+    rollDiceButtonActive = false;
+    rollDiceButton.className = 'roll_dice_active';
+    setTimeout ( function(){
+      rollDiceButtonActive = true;
+      rollDiceButton.className = '';
+     } , 700);
   }
-
-  setTimeout( realDiceRoll, 150);
-  realRollStarted = true;
 }
 
 function addToCurrentScore(){
@@ -142,21 +155,35 @@ function addToCurrentScore(){
 }
 
 function addToPlayerScore(){
-  activePlayer.score += currentScore;
-  activePlayer.x = 0;
+  currentScoreDOM.className = 'moving_current_score';
 
-  if ( successfulRolls >= 6 ){
-    if (activePlayer.flames < 3){
-      activePlayer.flames++;
+  setTimeout( function(){
+    activePlayer.score += currentScore;
+    activePlayer.x = 0;
+    activePlayerScoreNode.textContent = activePlayer.score;
+
+    if ( successfulRolls >= 6 ){
+      if (activePlayer.flames < 3){
+        activePlayer.flames++;
+      }
     }
-  }
 
-  if ( activePlayer.flames === 6 ){
-    activePlayer.score += 50;
-    //Show Pop up saying you just got 50 points and every other player needs a drink.
-    alert('You got 3 X in a row. you just Won 50 points, Every other player needs a drink');
-  }
-  switchTurn();
+    if ( activePlayer.flames === 6 ){
+      activePlayer.score += 50;
+      //Show Pop up saying you just got 50 points and every other player needs a drink.
+      alert('You got 3 X in a row. you just Won 50 points, Every other player needs a drink');
+    }
+    updateBigStreaks( activePlayer.flames, activePlayer.x );
+
+    setTimeout( function(){
+      currentScoreDOM.className = '';
+      switchTurn();
+    } , 1000)
+
+
+  } , 1000 )
+
+
 }
 
 function switchTurn(){
