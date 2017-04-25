@@ -84,18 +84,19 @@ function stillRolling(){
 
 function rollDice(){
   //Making dice rol for .150 seconds before selecting the number
-  interval= setInterval( stillRolling, 50);
+  interval= setInterval( stillRolling, 40);
 
+  // debugger;
 
   //Real Dice Roll
   function realDiceRoll (){
-    if ( realDiceRoll === false ){
+
     clearInterval(interval)
     diceResult = Math.floor(Math.random() * 6) + 1;
     diceDom.src = diceImgs[diceResult];
     addToCurrentScore();
     console.log(diceResult);
-    }
+
   }
 
   setTimeout( realDiceRoll, 150);
