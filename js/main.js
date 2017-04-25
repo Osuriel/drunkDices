@@ -20,7 +20,7 @@ Its super easy! The game will remind you when someone has to have a drink!
 
 // ----------------------------------- SET UP -----------------------------------
 
-var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput, currentlyRolling, holdRoll;
+var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, successfulRolls, errorNameInput, holdRoll;
 
 players = {};
 winningScore = 250;
@@ -29,7 +29,6 @@ currentScore = 0;
 gameon = false;
 diceImgs =[];
 successfulRolls = 0;
-currentlyRolling = false;
 
 var nameInputArray = [];
 
@@ -79,22 +78,8 @@ function stillRolling(){
     var tempDice = Math.floor(Math.random() * 6) + 1;
     diceDom.src = diceImgs[tempDice];
     console.log('this is running');
-    currentlyRolling = true;
 }
 
-function rollingDice(){
-  if (currentlyRolling === false){
-  holdRoll = setInterval( stillRolling, 50);
-  }
-}
-
-function rollingDiceStop(){
-  clearInterval(holdRoll);
-  if( currentlyRolling === true ){
-
-    rollDice();
-  }
-}
 
 
 function rollDice(){
@@ -387,6 +372,6 @@ function changeScore(){players.player1.html.score.innerHTML = 30;}
 
 holdPointsButton.addEventListener( 'click', addToPlayerScore);
 
-rollDiceButton.addEventListener( 'mousedown' , rollingDice);
-rollDiceButton.addEventListener( 'mouseup' , rollingDiceStop);
-rollDiceButton.addEventListener( 'mouseleave' , rollingDiceStop);
+rollDiceButton.addEventListener( 'mousedown' , rollDice);
+  // rollDiceButton.addEventListener( 'mouseup' , rollingDiceStop);
+  // rollDiceButton.addEventListener( 'mouseleave' , rollingDiceStop);
