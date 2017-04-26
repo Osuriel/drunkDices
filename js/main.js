@@ -46,6 +46,7 @@ var currentBigBoxDOM = document.getElementById('current_big_box');
 var bigFlamesDOM = document.getElementById('inside-left');
 var bigXDOM = document.getElementById('inside-right');
 var activePlayerScoreNode = document.getElementById('active_player_score');
+var activePlayerNameNode = document.getElementById('active_player_name');
 
 //Dom Elements Game controls
 var playerBoxContainer = document.getElementById('player-box-container');
@@ -53,7 +54,7 @@ var rollDiceButton = document.getElementById('roll_dice_button');
 var holdPointsButton = document.getElementById('hold_points_button');
 var diceDom = document.getElementById('dice');
 var currentScoreDOM = document.getElementById('current_score');
-var activePlayerNameNode = document.getElementById('active_player_name');
+
 
 
 for ( var i = 1; i <= 6; i++){
@@ -431,6 +432,9 @@ function startGame(){
   hide(popupBoxDiv);
   gameOn = true;
   activePlayer = players.player1;
+  activePlayer.html.playerBox.classList.add('active_player_box');
+  activePlayerNameNode.textContent = activePlayer.name;
+
 
 }
 
@@ -438,7 +442,7 @@ function startGame(){
 
 // ----------------------------------- CODE STARTS RUNNING HERE -----------------------------------
 
-
+initializeGame();
 
 document.getElementById('number-of-players-ok').addEventListener( 'click' , setNumberOfPlayers );
 document.getElementById('name-form-ok').addEventListener( 'click' , startGame );
