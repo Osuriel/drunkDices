@@ -40,6 +40,7 @@ var popupBoxDiv = document.getElementById('popup-box');
 var howManyPlayersDiv = document.getElementById('how-many-players');
 var nameFormDiv = document.getElementById('name-form');
 var error = document.querySelector('.error');
+var nameList = document.getElementById('name-list');
 var currentAttempsDOM = document.getElementById('current_attemps_number');
 var currentBigBoxDOM = document.getElementById('current_big_box');
 var bigFlamesDOM = document.getElementById('inside-left');
@@ -47,6 +48,7 @@ var bigXDOM = document.getElementById('inside-right');
 var activePlayerScoreNode = document.getElementById('active_player_score');
 
 //Dom Elements Game controls
+var playerBoxContainer = document.getElementById('player-box-container');
 var rollDiceButton = document.getElementById('roll_dice_button');
 var holdPointsButton = document.getElementById('hold_points_button');
 var diceDom = document.getElementById('dice');
@@ -83,7 +85,35 @@ function stillRolling(){
     console.log('this is running');
 }
 
+function initializeGame(){
+  numberOfPlayers = 0;
+  players = {};
+  winningScore = 250;
+  playerTurn = 1;
+  currentScore = 0;
+  gameon = false;
+  diceImgs =[];
+  successfulRolls = 0;
+  diceRolling = false;
+  rollDiceButtonActive = true;
+  holdPointsButtonActive = true;
+  nameInputArray = [];
+  nameList.innerHTML = "";
 
+  //Set UI to empty.
+  currentScoreDOM.textContent = 0;
+  activePlayerNameNode.textContent = "Player1";
+  bigFlamesDOM.innerHTML = "";
+  bigXDOM.innerHTML = "";
+  playerBoxContainer.innerHTML = "";
+  currentAttempsDOM.textContent = 0;
+  activePlayerScoreNode.textContent = 0;
+
+  //Show Pop Up Boxes.
+  show(lowOpacityScreenDiv);
+  show(popupBoxDiv);
+  show(howManyPlayersDiv);
+}
 
 function rollDice(){
   if ( rollDiceButtonActive === true ){
@@ -158,6 +188,7 @@ function addToCurrentScore(){
 }
 
 function addToPlayerScore(){
+  rollDiceButtonActive = false;
   if (holdPointsButtonActive){
     holdPointsButtonActive = false;
     currentScoreDOM.className = 'moving_current_score';
@@ -185,6 +216,7 @@ function addToPlayerScore(){
       setTimeout( function(){
         currentScoreDOM.className = '';
         switchTurn();
+        rollDiceButtonActive = true;
       } , 1000)
 
 
@@ -272,7 +304,7 @@ function setNumberOfPlayers(){
     inputElement.setAttribute ( 'placeholder' , 'Enter a name for player ' + i );
     liElement.appendChild(inputElement);
     nameInputArray[i] = inputElement;
-    document.getElementById('name-list').appendChild(liElement);
+    nameList.appendChild(liElement);
     inputElement.addEventListener( 'keypress' , function(event){
       if ( event.which === 13 ) {
         var i = parseInt(this.id.charAt(this.id.length -1));
@@ -329,7 +361,7 @@ function startGame(){
     //Create a Player box for each player.
     var playerBox= document.createElement('div');
     playerBox.classList.add('player_box');
-    document.getElementById('player-box-container').appendChild(playerBox);
+    playerBoxContainer.appendChild(playerBox);
 
     var playerName = document.createElement('div');
     playerName.textContent = players["player" + i].name;
@@ -389,7 +421,8 @@ function startGame(){
     // players["player" + i].html.score.textContent = 34;
   }
 
-
+  hide(nameFormDiv);
+  hide(error);
   hide(lowOpacityScreenDiv);
   hide(popupBoxDiv);
   gameOn = true;
