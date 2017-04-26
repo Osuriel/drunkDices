@@ -560,12 +560,15 @@ header {
   content: url('../img/dice_icon.png');
   position: absolute;
   left: -28px; top: -8px;
-  /*transform: rotate(360deg);*/
-  /*transition: transform .4s;*/
-  /*-webkit-transition: transform .4s;*/
   animation: rotate-dice;
   animation-duration: 1s;
 }
+
+#roll_dice_button.roll_dice_inactive{
+  background: #e7e7e7;
+  font-size: 1rem;
+}
+
 
 #hold_points_button::before {
   content: url('../img/lock_open_icon.png');
@@ -579,6 +582,10 @@ header {
   left: -28px; top: -8px;
 }
 
+#hold_points_button.hold_points_inactive{
+  background: #e7e7e7;
+  font-size: 1rem;
+}
 
 /*---------------- Players Area ----------------*/
 

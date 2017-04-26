@@ -138,7 +138,7 @@ function rollDice(){
     setTimeout( realDiceRoll, 400);
     diceRolling = true;
     rollDiceButtonActive = false;
-    rollDiceButton.className = 'roll_dice_active';
+    rollDiceButton.className = 'roll_dice_active roll_dice_inactive';
     setTimeout ( function(){
       rollDiceButtonActive = true;
       rollDiceButton.className = '';
@@ -189,9 +189,11 @@ function addToCurrentScore(){
 
 function addToPlayerScore(){
   rollDiceButtonActive = false;
+  rollDiceButton.className = 'roll_dice_inactive';
   if (holdPointsButtonActive){
     holdPointsButtonActive = false;
     currentScoreDOM.className = 'moving_current_score';
+    holdPointsButton.className = 'hold_points_inactive';
 
     setTimeout( function(){
       activePlayer.score += currentScore;
@@ -217,6 +219,8 @@ function addToPlayerScore(){
         currentScoreDOM.className = '';
         switchTurn();
         rollDiceButtonActive = true;
+        rollDiceButton.className = '';
+        holdPointsButton.className = '';
       } , 1000)
 
 
