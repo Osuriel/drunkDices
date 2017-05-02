@@ -92,7 +92,6 @@ function show(element){
 function stillRolling(){
     var tempDice = Math.floor(Math.random() * 6) + 1;
     diceDom.src = diceImgs[tempDice];
-    console.log('this is running');
 }
 
 function initializeGame(){
@@ -140,7 +139,6 @@ function rollDice(){
       diceResult = Math.floor(Math.random() * 6) + 1;
       diceDom.src = diceImgs[diceResult];
       addToCurrentScore();
-      console.log(diceResult);
       diceRolling = false;
 
     }
