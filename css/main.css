@@ -779,13 +779,13 @@ footer img:hover {
 
 /************** Pop ups *************-*/
 
-#low-opacity-screen{
-  background: white;
+.low-opacity-screen{
+  background: radial-gradient(#fff,rgba(255, 255, 255, 0.9) 600px);
   width: 100%;
   height: 100vh;
   position: fixed;
   top: 0; left: 0; right: 0;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 #popup-box {
@@ -821,6 +821,10 @@ p.error {
 .name-too-long {
   color: red;
   font-size: .675rem;
+}
+
+#message-text{
+  color: white;
 }
 
 
@@ -863,6 +867,24 @@ p.error {
   height: 80px;
 }
 
+#turn-announcement {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#turn-announcement-name {
+  font-size: 8rem;
+  color: #f15a24;
+  text-transform: capitalize;
+  text-shadow: 1px 2px 4px rgba(0,0,0,.2);
+}
+
+#turn-announcement-text {
+  margin: -20px;
+  font-size: 2rem;
+}
 
 /*---------------- Enter Player Names form ----------------*/
 

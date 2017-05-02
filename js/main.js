@@ -22,17 +22,17 @@ Its super easy! The game will remind you when someone has to have a drink!
 
 var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentScore, playerTurn, gameOn, diceImgs, nameInputArray, successfulRolls, errorNameInput, holdRoll, diceRolling, rollDiceButtonActive, holdPointsButtonActive;
 
-players = {};
-winningScore = 250;
-playerTurn = 1;
-currentScore = 0;
-gameon = false;
-diceImgs =[];
-successfulRolls = 0;
-diceRolling = false;
-rollDiceButtonActive = true;
-holdPointsButtonActive = true;
-nameInputArray = [];
+// players = {};
+// winningScore = 250;
+// playerTurn = 1;
+// currentScore = 0;
+// gameon = false;
+// diceImgs =[];
+// successfulRolls = 0;
+// diceRolling = false;
+// rollDiceButtonActive = true;
+// holdPointsButtonActive = true;
+// nameInputArray = [];
 
 //DOM elements
 var lowOpacityScreenDiv= document.getElementById('low-opacity-screen');
@@ -47,6 +47,18 @@ var bigFlamesDOM = document.getElementById('inside-left');
 var bigXDOM = document.getElementById('inside-right');
 var activePlayerScoreNode = document.getElementById('active_player_score');
 var activePlayerNameNode = document.getElementById('active_player_name');
+var gameMessageDiv = document.getElementById('game-message');
+var gameMessageText = document.getElementById('message-text');
+var gameMessageOK = document.getElementById('message-ok');
+var gameMessageHeading = document.getElementById('message-heading');
+
+//DOM Elements for Player Announcements (player -turns);
+var turnAnnouncement = document.getElementById('turn-announcement');
+var turnAnnouncementName = document.getElementById('turn-announcement-name');
+var turnAnnouncementText = document.getElementById('turn-announcement-text');
+var stopLoop = false;
+var gameMessageShown = false;
+var gameMessageNeeded = false;
 
 //Dom Elements Game controls
 var playerBoxContainer = document.getElementById('player-box-container');
@@ -57,10 +69,7 @@ var currentScoreDOM = document.getElementById('current_score');
 
 
 
-for ( var i = 1; i <= 6; i++){
-  var diceUrl = 'img/dices/'+i+'dice.png';
-  diceImgs[i]= diceUrl;
-}
+
 
 //functions:
 
@@ -154,20 +163,23 @@ function addToCurrentScore(){
     activePlayer.flames = 0;
     activePlayer.x++;
 
-    //Takes 20 points away if you have an X streak of 3.
-    if ( activePlayer.x >= 3 && activePlayer.score > 20 ) {
-      activePlayer.score -= 20;
-      //Show Pop up saying you just lost 20 points and every other player needs a drink.
-      alert('You got 3 X in a row. you just lost 20 points');
-    } else if (activePlayer.x >= 3 && activePlayer.score <= 20) {
-      activePlayer.score = 0;
-      //Show Pop up saying you just lost 20 points and every other player needs a drink
-      alert('You got 3 X in a row. you just lost 20 points');
-    }
-
     setTimeout( function(){
-      alert('You got a 1! Take a Shot and your turn is over');
-      switchTurn();
+      //Takes 20 points away if you have an X streak of 3.
+      if ( activePlayer.x >= 3 && activePlayer.score > 20 ) {
+        activePlayer.score -= 20;
+        //Show Pop up saying you just lost 20 points and every other player needs a drink.
+        //alert('You got 3 X in a row. you just lost 20 points');
+        gameMessage( '-20 points! - "X" streak', 'You got 3 X in a row. you just lost 20 points and must take an extra drink!, This happens because you got a "1" or an X, 3 times in a row. Be wiser and hold your points next time.' );
+      } else if (activePlayer.x >= 3 && activePlayer.score <= 20) {
+        activePlayer.score = 0;
+        //Show Pop up saying you just lost 20 points and every other player needs a drink
+        gameMessage( '-20 points! - "X" streak', 'You got 3 X in a row. you just lost 20 points and must take an extra drink!, This happens because you got a "1" or an X, 3 times in a row. Be wiser and hold your points next time.' );
+      } else {
+        // alert('You got a 1! Take a Shot and your turn is over');
+        gameMessage( 'You got a 1! ', 'You rolled a 1. Take a Shot and your turn is over. Every time you get a 1 you get an X. If you get a streak of 3 X you will lose 20 points.' );
+        switchTurn();
+      }
+
     }, 500);
   } else {
     currentScore += diceResult;
@@ -246,7 +258,7 @@ function switchTurn(){
     playerTurn++;
   }
   activePlayer = players['player' + playerTurn];
-  alert(activePlayer.name + " It is your turn now.");
+  announceNextPlayer(activePlayer.name);
   activePlayerNameNode.textContent = activePlayer.name;
   activePlayerScoreNode.textContent = activePlayer.score;
   activePlayer.html.playerBox.classList.add('active_player_box');
@@ -438,11 +450,51 @@ function startGame(){
 
 }
 
+function gameMessage( heading, textInput ){
+  gameMessageNeeded = true;
+  show(lowOpacityScreenDiv);
+  show(popupBoxDiv);
+  show(gameMessageDiv);
+  gameMessageHeading.textContent = heading;
+  gameMessageText.textContent = textInput;
+  function closeMessage(){
+    hide(popupBoxDiv);
+    hide(gameMessageDiv);
+    hide(lowOpacityScreenDiv);
+  }
+  gameMessageOK.addEventListener( 'click' , closeMessage);
+}
+
+function announceNextPlayer(name){
+
+  function showName(){
+    turnAnnouncementName.textContent = name;
+    show(turnAnnouncement);
+    show(lowOpacityScreenDiv);
+
+    setTimeout( function(){hide(turnAnnouncement);hide(lowOpacityScreenDiv)}, 2500);
+
+  }
+
+  if (  gameMessageNeeded === false ){
+    showName();
+  } else {
+    gameMessageOK.addEventListener( 'click', showName );
+  }
+
+  gameMessageNeeded = false;
+
+}
+
 
 
 // ----------------------------------- CODE STARTS RUNNING HERE -----------------------------------
 
 initializeGame();
+for ( var i = 1; i <= 6; i++){
+  var diceUrl = 'img/dices/'+i+'dice.png';
+  diceImgs[i]= diceUrl;
+}
 
 document.getElementById('number-of-players-ok').addEventListener( 'click' , setNumberOfPlayers );
 document.getElementById('name-form-ok').addEventListener( 'click' , startGame );

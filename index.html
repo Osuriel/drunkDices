@@ -182,7 +182,11 @@
 
 
         <!--************* Pop ups *************-->
-        <div id="low-opacity-screen" class=""></div>
+        <div id="low-opacity-screen" class="low-opacity-screen"></div>
+        <div id="turn-announcement" class="hidden">
+          <div id="turn-announcement-name">Omar S.</div>
+          <p id="turn-announcement-text">It is your turn now!</p>
+        </div>
         <div id="popup-box" class="popup-content">
 
           <div id="how-many-players" class="">
@@ -214,6 +218,13 @@
             <button id="name-form-ok">OK</button>
             <p class='error hidden'>Please enter player names.</p>
           </div><!-- End of name-form-->
+          <div id="game-message" class="hidden">
+            <h3 id ="message-heading">Take 300 Shots bitch</h3>
+            <div id="message-text">
+             <!-- Alert Text goes here. -->
+            </div>
+            <button id="message-ok">OK</button>
+          </div>
           <img id="popup-logo" src="img/logo_whitedices.svg">
 
         </div><!-- End of popups -->
