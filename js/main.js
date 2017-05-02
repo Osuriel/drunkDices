@@ -234,6 +234,9 @@ function addToPlayerScore(){
 
       setTimeout( function(){
         currentScoreDOM.className = '';
+        if ( activePlayer.flames === 3){
+          gameMessage( "YOU JUST COMPLETED A FIRE STREAK" , "You will get 50 bonus points plus every other player has to take a drink!");
+        }
         switchTurn();
         rollDiceButtonActive = true;
         rollDiceButton.className = '';
@@ -475,7 +478,7 @@ function announceNextPlayer(name){
     show(turnAnnouncement);
     show(lowOpacityScreenDiv);
 
-    setTimeout( function(){hide(turnAnnouncement);hide(lowOpacityScreenDiv)}, 2500);
+    setTimeout( function(){hide(turnAnnouncement);hide(lowOpacityScreenDiv)}, 2200);
 
   }
 
