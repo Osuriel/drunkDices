@@ -174,11 +174,15 @@ function addToCurrentScore(){
         activePlayer.score = 0;
         //Show Pop up saying you just lost 20 points and every other player needs a drink
         gameMessage( '-20 points! - "X" streak', 'You got 3 X in a row. you just lost 20 points and must take an extra drink!, This happens because you got a "1" or an X, 3 times in a row. Be wiser and hold your points next time.' );
-      } else {
+      } else if  (activePlayer.x === 2){
+        gameMessage( 'You got a 1! - Warning! You got 2 Xs', 'You rolled a 1. Take a Shot and your turn is over. Every time you get a 1 you get an X. If you get a streak of 3 X you will lose 20 points.' );
+
+      }else {
         // alert('You got a 1! Take a Shot and your turn is over');
         gameMessage( 'You got a 1! ', 'You rolled a 1. Take a Shot and your turn is over. Every time you get a 1 you get an X. If you get a streak of 3 X you will lose 20 points.' );
-        switchTurn();
       }
+
+      switchTurn();
 
     }, 500);
   } else {
@@ -460,7 +464,6 @@ function gameMessage( heading, textInput ){
   function closeMessage(){
     hide(popupBoxDiv);
     hide(gameMessageDiv);
-    hide(lowOpacityScreenDiv);
   }
   gameMessageOK.addEventListener( 'click' , closeMessage);
 }
