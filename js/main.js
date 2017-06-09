@@ -38,6 +38,7 @@ var numberOfPlayers, players, winningScore, activePlayer, diceResult, currentSco
 var lowOpacityScreenDiv= document.getElementById('low-opacity-screen');
 var popupBoxDiv = document.getElementById('popup-box');
 var howManyPlayersDiv = document.getElementById('how-many-players');
+var selectWinningScore = document.getElementById('select-winning-score');
 var nameFormDiv = document.getElementById('name-form');
 var error = document.querySelector('.error');
 var nameList = document.getElementById('name-list');
@@ -51,6 +52,8 @@ var gameMessageDiv = document.getElementById('game-message');
 var gameMessageText = document.getElementById('message-text');
 var gameMessageOK = document.getElementById('message-ok');
 var gameMessageHeading = document.getElementById('message-heading');
+var numberOfPlayersInput = document.getElementById('number-of-players');
+
 
 //DOM Elements for Player Announcements (player -turns);
 var turnAnnouncement = document.getElementById('turn-announcement');
@@ -108,6 +111,7 @@ function initializeGame(){
   holdPointsButtonActive = true;
   nameInputArray = [];
   nameList.innerHTML = "";
+  numberOfPlayers = 2;
 
   //Set UI to empty.
   currentScoreDOM.textContent = 0;
@@ -311,7 +315,7 @@ function updateBigStreaks ( flames, xs) {
 
 
 function setNumberOfPlayers(){
-  numberOfPlayers = parseFloat(document.getElementById('number-of-players').value);
+  winningScore = parseFloat(selectWinningScore.value);
   hide(howManyPlayersDiv);
   show(nameFormDiv);
   document.getElementById('number-selected').textContent = numberOfPlayers;
@@ -339,6 +343,18 @@ function setNumberOfPlayers(){
     } );
   }
 
+}
+
+function calculateScores(){
+  console.log('hi!');
+  numberOfPlayers = parseFloat(numberOfPlayersInput.value);
+  document.getElementById('score-short').value = 80 / numberOfPlayers;
+  document.getElementById('score-short').textContent = 80 / numberOfPlayers;
+  document.getElementById('score-medium').value = 120 / numberOfPlayers
+  document.getElementById('score-medium').textContent = 120 / numberOfPlayers
+  document.getElementById('score-long').value = 160 / numberOfPlayers
+  document.getElementById('score-long').textContent = 160 / numberOfPlayers
+  console.log(document.getElementById('score-short').value);
 }
 
 
@@ -500,6 +516,7 @@ for ( var i = 1; i <= 6; i++){
   diceImgs[i]= diceUrl;
 }
 
+numberOfPlayersInput.addEventListener( 'change', calculateScores);
 document.getElementById('number-of-players-ok').addEventListener( 'click' , setNumberOfPlayers );
 document.getElementById('name-form-ok').addEventListener( 'click' , startGame );
 function changeScore(){players.player1.html.score.innerHTML = 30;}
