@@ -1,250 +1,105 @@
-<!doctype html>
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>DrunkDices.com | The wold's funnest multiplayer drinking game.</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-        <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet"><!-- FONT -->
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
-        <header>
-          <img src="img/logo.png" alt="DrunkDices.com Logo">
-        </header>
-
-        <!-- |||||||||||||||||||| MAIN AREA |||||||||||||||||||| -->
-        <section id="main-area">
-          <div class="container clearfix">
-            <div id="current_big_box" class="left_box boxes">
-
-              <div class="name-and-score">
-                <h4>Current Player:</h4>
-                <h2 id="active_player_name">Omar S.</h2>
-                <h4>Player Score:</h4>
-                <p class="active_player_score_line"><span id="active_player_score">80</span>pts</p>
-                <p class="points-to-win-line">(<span id="points-to-win">250</span>pts wins the game)</p>
-              </div><!-- End of .name-and-score -->
-
-              <!-- |||||||||||||||||||| BIG STREAKS |||||||||||||||||||| -->
-              <div class="streaks">
-                <h4>Streaks</h4>
-                <div class="streak-left">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
-                  <div id="inside-left">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="big-streak-img">
-                  </div>
-                </div>
-                <div class="streak-right">
-                  <img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
-                  <img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
-                  <img src="img/x_icon_gray.png" alt="Flame for Hot streak" class="big-streak-img">
-                  <div id="inside-right">
-                    <img src="img/x_icon.png" alt="Flame for Hot streak" class="big-streak-img">
-                    <img src="img/x_icon.png" alt="Flame for Hot streak" class="big-streak-img">
-                    <img src="img/x_icon.png" alt="Flame for Hot streak" class="big-streak-img">
-                  </div>
-                </div>
-              </div><!-- End of .streaks -->
-            </div><!-- End of .left_box -->
-
-            <div class="middle_box boxes">
-              <img id="dice" src="img/dices/6dice.png" alt="Dice">
-              <h4>Turn Score:</h4>
-              <p id="current_score">16</p><!-- #currentScore -->
-            </div><!-- End of .middle_box -->
-
-            <div class="right_box boxes">
-              <p class="current_attemps"><span id="current_attemps_number">7</span> <span id="current_attemps_word">attemps</span></p>
-
-              <button id="roll_dice_button">Roll Dice</button>
-              <button id="hold_points_button">Hold Points</button>
-            </div><!-- End of .right_box -->
-
-          </div> <!-- End of .container -->
-        </section><!-- End of #main-area -->
-
-        <!-- |||||||||||||||||||| PLAYERS AREA |||||||||||||||||||| -->
-        <section id="players-area">
-          <div class="container">
-            <div id="player-box-container" class="clearfix">
-
-              <!-- <div class="player_box">
-                <div id="player_1_name" class="player_names">Omar S.</div>
-                <div id="player_1_score_heading" class="player_score_heading">Player Score:</div>
-                <div id="player_1_score" class="player_score">
-                  <span class="player_score_number">80</span>pts
-                </div>
-                <div class="small_flames">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
-                  <div class="inside-small-flame">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
-                  </div>
-                </div>
-                <div class="small_xs">
-                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
-                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
-                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
-                  <div class="inside-small-x">
-                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
-                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
-                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
-                  </div>
-                </div>
-
-              </div>
-              <div class="player_box">
-                <div id="player_1_name" class="player_names">Omar S.</div>
-                <div id="player_1_score_heading" class="player_score_heading">Player Score:</div>
-                <div id="player_1_score" class="player_score">
-                  <span class="player_score_number">80</span>pts
-                </div>
-                <div class="small_flames">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
-                  <img src="img/flame_icon_gray.png" alt="Flame for Hot streak" class="small-streak-img">
-                  <div class="inside-small-flame">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
-                    <img src="img/flame_icon.png" alt="Flame for Hot streak" class="small-streak-img">
-                  </div>
-                </div>
-                <div class="small_xs">
-                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
-                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
-                  <img src="img/x_icon_gray.png" alt="x for Hot streak" class="small-streak-img">
-                  <div class="inside-small-x">
-                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
-                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
-                    <img src="img/x_icon.png" alt="x for Hot streak" class="small-streak-img">
-                  </div>
-                </div>
-
-              </div> -->
-              <!-- <div class="player_box"></div>
-              <div class="player_box"></div>
-              <div class="player_box"></div>
-              <div class="player_box"></div>
-              <div class="player_box"></div>
-              <div class="player_box"></div> -->
-            </div><!-- End of #player-box-container -->
-          </div><!-- End of .container -->
-        </section><!-- End of #players_area -->
-
-        <section id="rules">
-          <h2>Rules</h2>
-          <ul class="rule_list">
-            <li>Each Player can roll the dices as many time as they wish until they decide to hold their point and pass the turn or they get a “one”.</li>
-
-            <li>If a player gets a “one” when they roll the dice, they will not get any points and their turn will be over. A player must have a drink every time they get a 1.</li>
-
-            <li>If a player roll the dice 6 or more times in a turn and decides to hold his points, He or she gets a flame. If a player gets a streak of 3 flames in a row he will get 50 bonus points and every other player must have a drink.</li>
-
-            <li>When a player gets a “one”  he gets an X. If a player accumulates a streak of 3 "X"s, he or she loses 20 points and must have an extra drink. If the player has 20 or less points his score will be 0.</li>
-
-            <li>The first Player to reach 250 points wins the game, and every losing player has to have a drink.</li>
-
-            <li>Its super easy! The game will alert you when someone has to have a drink!</li>
-          </ul>
-        </section><!-- End of #rules -->
-
-        <footer>
-          <div class="container border_top">
-            <p>Alcohol should only be consumed by those legaly allowed to do so. Drunkdices.com nor it’s creators are responsible for any actions or consecuences that may occur while driniking or playing this game. It is not obligatory and 100% optional to drink while playing this game. Drink at your own discretion and remember that alcohol is unhealthy and can even cause death in some cases. If you decite to drink, make sure to stop if youre not feeling well.</p>
-
-            <img src="img/icon_fb.png" alt="Facebook">
-            <img src="img/icon_tw.png" alt="Twitter">
-            <img src="img/icon_ig.png" alt="Instagram">
-            <img src="img/icon_world.png" alt="Internet">
-
-            <p class="bottom_line">Copyright © 2017 DrunkDices.com powered by <a href="http://surielmedia.com/" target="_blank">SurielMedia.com<span class="surielmedia_tooltip">Check out the developer!</span></a></p>
-          </div><!-- End of .container -->
-        </footer><!-- End of footer -->
-
-
-        <!--************* Pop ups *************-->
-        <div id="low-opacity-screen" class="low-opacity-screen"></div>
-        <div id="turn-announcement" class="hidden">
-          <div id="turn-announcement-name">Omar S.</div>
-          <p id="turn-announcement-text">It is your turn now!</p>
-        </div>
-        <div id="popup-box" class="popup-content">
-
-          <div id="how-many-players" class="">
-            <h2>Start a game</h2>
-            <h3>How many players?</h3>
-            <select id="number-of-players">
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-            </select>
-            <button id="number-of-players-ok">OK</button>
-          </div><!-- End of How many Players -->
-          <div id="name-form" class="hidden">
-            <h3>You selected <span id="number-selected">8</span> players. Now enter their names.</h3>
-            <ul id="name-list" class="clearfix">
-              <!-- <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 1"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 2"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 3"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 4"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 5"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 6"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 7"></li>
-              <li><input type="text" id="name-input-1" class="name-input" placeholder="Enter name for player 8"></li> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SURIEL MEDIA | WEB AND GRAPHICS </title>
+    <meta name="viewport" content="width=device-width" inicial-scale="1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="container cf">
+          <img class="logo" src="img/suriel_media.svg" alt="Suriel Media Logo">
+          <nav>
+            <ul>
+              <li><a href="#short-bio">Short Bio</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
-            <button id="name-form-ok">OK</button>
-            <p class='error hidden'>Please enter player names.</p>
-          </div><!-- End of name-form-->
-          <div id="game-message" class="hidden">
-            <h3 id ="message-heading">Take 300 Shots bitch</h3>
-            <div id="message-text">
-             <!-- Alert Text goes here. -->
-            </div>
-            <button id="message-ok">OK</button>
+          </nav>
+        </div><!-- Container -->
+      </header>
+      <main id="short-bio">
+        <div class="container">
+          <div class="bio cf">
+            <div class="bio-photo-wrapper">
+              <img class="bio-photo" src="img/omar.jpg" alt="Photograph of Omar Suriel">
+          </div><!-- bio-photo-wrapper -->
+            <div class="bio-text">
+              <h1>Omar Suriel</h1>
+              <p>
+                ... Not sure who that is but I heard he spends his time  working as a software engineer. Word on the street, he’s pretty good with Javascript and web based applications since he specializes on it.
+                Hes is also the founder of BiteJet.com, A real estate investor, and Helps people better their financial life and start a software engineering career from scratch.
+                He also likes Philly Cheese Steaks, hot wings, the Cincinnati Bengals and playing football himself.
+              </p>
+              <a href="#contact">Contact</a>
+
+            </div><!-- bio-text -->
+          </div><!-- bio -->
+          <a href="#contact"><svg id="arrow-down" enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><polygon points="47.25,15 45.164,12.914 25,33.078 4.836,12.914 2.75,15 25,37.25 "/></svg></a>
+        </div><!--Container -->
+      </main><!-- short-bio -->
+      <section id="contact">
+        <div class="container">
+          <h2>Let's link up!</h2>
+          <div class="smlinkWrapper">
+            <a class="smlink-link" href="http://instagram.com/surielmedia" target="_blank">
+              <div class="smlink-container">
+                <i class="fa fa-instagram fa-2x smlink"></i>
+                <p class="smlink-text">@SurielMedia</p>
+              </div>
+            </a>
+            <a class="smlink-link" href="http://twitter.com/surielmedia" target="_blank">
+              <div class="smlink-container">
+                <i class="fa fa-twitter fa-2x smlink"></i>
+                <p class="smlink-text">@SurielMedia</p>
+              </div>
+            </a>
+            <a class="smlink-link" href="http://linkedin.com/in/omarsuriel" target="_blank">
+              <div class="smlink-container">
+                <i class="fa fa-linkedin fa-2x smlink"></i>
+                <p class="smlink-text">/in/omarsuriel</p>
+              </div>
+            </a>
+            <a class="smlink-link" href="http://youtube.com/omarsuriel" target="_blank">
+              <div class="smlink-container">
+                <i class="fa fa-youtube fa-2x smlink"></i>
+                <p class="smlink-text">/OmarSuriel</p>
+              </div>
+            </a>
           </div>
-          <img id="popup-logo" src="img/logo_whitedices.svg">
+          <form action="https://formspree.io/omarsuriel@icloud.com"
+        method="POST">
+            <div class="info-input-group cf">
+              <input class="info-input" type="text" name="name" placeholder="Your Name">
 
-        </div><!-- End of popups -->
+              <input class="info-input" type="email" name="_replyto" placeholder="Your Email">
+            </div><!-- info-input-group -->
+
+              <textarea name="message" rows="8" cols="80" placeholder="What can I help you with?"></textarea>
+
+              <input class="send-form" type="submit" value="Send">
+
+          </form>
+        </div><!-- Container -->
+      </section><!-- Contact -->
+    </div><!--wrapper -->
+    <footer>
+      <img class="footer-logo" src="img/suriel_media_logo_all_white.png" alt="Suriel Media all white logo">
+      <div class="footer-nav cf">
+        <a href="#short-bio">Short Bio</a>
+        <a href="#contact">Contact</a>
+      </div><!-- footer-nav -->
+      <p class="copyright">&copy Copyright 2017 Omar Suriel <br>
+        surielmedia.com | omarsuriel.com
+      </p>
+    </footer>
+  </body>
 
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-98384961-1', 'auto');
-          ga('send', 'pageview');
-
-        </script>
-    </body>
 </html>

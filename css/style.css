@@ -1,0 +1,362 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: inherit;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+header {
+  min-height: 100px;
+  background: linear-gradient(to top, #d6d6d6, #fff);
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  position: relative;
+  z-index: 10;
+  margin: auto;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 0 50px;
+}
+
+.logo {
+  height: 100px;
+  float: left;
+  /*padding-top: 20px;*/
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  padding: 40px 0 0 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: .75rem;
+  margin-left: 10px;
+  padding-right:10px;
+  border-right: solid 1px #000;
+}
+
+nav li:last-child {
+  border-right: none;
+}
+
+/*------------ Nav Link Styles ------------*/
+
+nav li a,
+nav li a:link,
+nav li a:visited {
+  color: #000;
+  text-decoration: none;
+  letter-spacing: .1em;
+}
+
+nav li a:hover{
+  /*text-decoration: underline;*/
+  color: #fff;
+  background-color: #25aae1;
+  padding: 20px;
+}
+
+/*------------ Main Area ------------*/
+main {
+  padding-bottom: 15px;
+  background:
+  linear-gradient(to top, rgba(12,64,85,.8), rgba(12,64,85,.9)),
+  url('../img/desk_of_omar.jpg') center/cover no-repeat;
+  color: #fff;
+
+}
+
+.bio {
+  width: 100%;
+  margin: auto;
+  padding: 10% 10% 0;
+}
+
+.bio-photo-wrapper {
+  padding-right: 10px;
+  float: left;
+  max-width: 50%;
+}
+
+.bio-photo {
+  max-width: 100%;
+  max-height: 385px;
+  border: solid 6px #fff;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+}
+
+.bio-text {
+  width: 50%;
+  float: right;
+  padding-left: 10px;
+}
+
+main h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.bio-text p {
+  margin-bottom: 30px;
+  font-weight: 300;
+  line-height: 2em;
+}
+
+main .bio-text a {
+  color: white;
+  text-decoration: none;
+  border: solid 2px white;
+  padding: 10px 40px;
+  margin-top: 50px;
+  text-transform: uppercase;
+  font-size: .8rem;
+  letter-spacing: .2em;
+  font-weight: 300;
+}
+
+main .bio-text a:hover {
+  color: #25aae1;
+  background: #fff;
+}
+
+#arrow-down {
+  display: block;
+  margin: 15px auto 0;
+  fill: white;
+  width: 30px;
+  opacity: 50%;
+}
+
+.smlinkWrapper {
+  color: #444;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.smlink-text {
+  margin: 0 0 0 10px;
+  height: fit-content;
+}
+
+.smlink-container {
+  display: flex;
+   align-content: center;
+   align-items: center;
+}
+
+.smlink-container:hover {
+  color:  #25aae1;
+  /* background:  #25aae1; */
+  /* border: solid 1px #25aae1; */
+}
+
+.smlink-link {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+/*------------ Contact ------------*/
+
+#contact h2 {
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 400;
+  color: #444;
+  margin-top: 40px;
+  text-align: left;
+}
+
+form {
+  width: 100%;
+  margin: 0 auto 50px;
+}
+
+input,
+textarea {
+  border: none;
+  border-bottom: solid 2px #25aae1;
+  padding: 10px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: solid 2px #25aae1;
+}
+
+.info-input-group {
+  margin-bottom: 20px;
+}
+
+.info-input {
+  height: 2.5rem;
+  display: block;
+  font-size: .75rem;
+  text-align: center;
+  width: 48%;
+  float: left;
+  border-radius: 0;
+}
+
+.info-input:first-child {
+  margin-right: 2%;
+}
+
+.info-input:last-child {
+  margin-left: 2%;
+}
+
+textarea {
+  text-align: center;
+  border: none;
+  background: #e9f6fc;
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.send-form {
+  border: none;
+  background: #25aae1;
+  padding: 7px 40px;
+  text-transform: uppercase;
+  font-size: .75rem;
+  letter-spacing: .1rem;
+  color: white;
+  display: block;
+  margin: auto;
+}
+
+.send-form:hover {
+  background: #ff8a00;
+}
+
+/*------------ Footer ------------*/
+
+footer {
+  background: #10425c;
+  border-top: 2px solid #25aae1;
+  padding: 35px;
+  padding-bottom: 10px;
+}
+
+.footer-logo {
+  height: 60px;
+}
+
+.footer-nav {
+  margin: 20px auto;;
+}
+
+.footer-nav a,
+.footer-nav a:link,
+.footer-nav a:visited {
+  color: #25aae1;
+  text-transform: uppercase;
+  font-size: .7rem;
+  border-right: solid 2px #25aae1;
+  padding-right: 10px;
+  text-decoration: none;
+}
+
+.footer-nav a:last-child {
+  border: none;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+  color: #ff8a00;
+}
+
+.copyright{
+  color: white;
+  font-size: .7rem;
+  line-height: 1rem;
+  font-weight: 300;
+}
+
+.wrapper {
+  min-height: calc(100vh - 257px);
+}
+
+/*------------ Clearfix ------------*/
+.cf:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/*------------ Media Queries------------*/
+
+@media (max-width: 800px) {
+  .bio {
+    padding: 10% 0 0;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 2.5%;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .logo {
+      height: 100px;
+  }
+
+  .logo,
+  nav {
+    float: none;
+  }
+
+  nav ul {
+    padding: 15px 0 20px;
+  }
+
+  .bio-photo-wrapper,
+  .bio-text {
+    float: none;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .bio-text h1 {
+    margin: 16px 0 -10px;
+  }
+
+  .info-input,
+  .info-input:first-child,
+  .info-input:last-child {
+    float: none;
+    margin: 0 0 15px;
+    width: 100%;
+  }
+
+  textarea,
+ .send-form {
+    border-radius: 5px;
+  }
+}
