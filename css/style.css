@@ -24,6 +24,9 @@ header {
   max-width: 960px;
   margin: auto;
   padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
@@ -169,6 +172,7 @@ main .bio-text a:hover {
 .smlink-link {
   color: inherit; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
+  margin-bottom: 20px;
 }
 
 /*------------ Contact ------------*/
@@ -178,7 +182,7 @@ main .bio-text a:hover {
   font-size: 1em;
   font-weight: 400;
   color: #444;
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: left;
 }
 
@@ -310,6 +314,25 @@ footer {
 @media (max-width: 800px) {
   .bio {
     padding: 10% 0 0;
+  }
+
+}
+
+@media (max-width: 760px) {
+  .smlinkWrapper {
+    /* flex-direction: column;
+    height: 300px; */
+    /* flex-shrink: 0; */
+    flex-wrap: wrap;
+  }
+
+  .smlink-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .smlink-link {
+    flex-basis: 50%;
   }
 
 }
